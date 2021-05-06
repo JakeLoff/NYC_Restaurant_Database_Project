@@ -1,0 +1,48 @@
+--Find all distinct neighborhoods
+SELECT DISTINCT neighborhood FROM nomnom;
+
+--Find all distinct cuisines
+SELECT DISTINCT cuisine FROM nomnom;
+
+--Find all Chinese cuisine options
+SELECT name FROM nomnom
+WHERE cuisine = 'Chinese';
+
+--Find all restaurants with a review of 4 stars or higher
+SELECT name FROM nomnom
+WHERE review >= 4;
+
+--Find restaurants with Italian cuisine and that are expensive
+SELECT name FROM nomnom
+WHERE cuisine = 'Italian' AND price = '$$$';
+
+--Find restarurants with the word meatball in the name
+SELECT * FROM nomnom
+WHERE name LIKE '%meatball%';
+
+--Find restaruants in certain neighborhoods (Midtown, Downtown, Chinatown)
+SELECT * FROM nomnom
+WHERE neighborhood = 'Midtown' 
+OR neighborhood = 'Downtown'
+OR neighborhood = 'Chinatown';
+
+--Find all health grade pending restaurants
+SELECT * FROM nomnom
+WHERE health IS NULL;
+
+--Create a Top 10 restaurants ranking list
+SELECT * FROM nomnom
+ORDER BY review DESC
+LIMIT 10;
+
+--Case statement to change rating system from integers to strings
+SELECT name,
+  CASE
+    WHEN review > 4.5 THEN 'Extraordinary'
+    WHEN review > 4 THEN 'Excellent'
+    WHEN review > 3 THEN 'Good'
+    WHEN review > 2 THEN 'Fair'
+    ELSE 'Poor'
+  END AS 'Review'
+FROM nomnom;
+
